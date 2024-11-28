@@ -67,9 +67,9 @@ public class Anagram {
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
 		str = str.toLowerCase();	
-		String str1 = " ";
+		String str1 = "";
 		for(int i = 0; i < str.length(); i++)	
-			if ((str.charAt(i) == ' ') || str.charAt(i) >= 'a' && str.charAt(i) <= 'z') {
+			if ((str.charAt(i) == 32) || str.charAt(i) >= 'a' && str.charAt(i) <= 'z') {
 			str1 = str1 + str.charAt(i)	;
 			}
 		return str1;
