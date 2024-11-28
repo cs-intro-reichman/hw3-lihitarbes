@@ -28,22 +28,64 @@ public class Anagram {
 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
-		// Replace the following statement with your code
-		return false;
-	}
+		String prestr1 = preProcess(str1);
+		String prestr2 = preProcess(str2);
+		String snew1 = "";
+		String snew2 = "";
+		for (int i = 0; i < prestr1.length(); i++){
+			if((prestr1.charAt(i) >= 'a' && prestr1.charAt(i) <= 'z')){
+				snew1 = snew1 + prestr1.charAt(i);
+			}
+		}
+		for (int i = 0; i < prestr2.length(); i++){
+			if((prestr2.charAt(i) >= 'a' && prestr2.charAt(i) <= 'z')){
+				snew2 = snew2 + prestr2.charAt(i);
+			}
+		}
+		if (snew1.length() != snew2.length()){
+			return false;
+		}
+		int placeHolder = 0;
+		for (int i=0; i<snew1.length(); i++){
+			boolean isana = false;
+			for (int j=0; j < snew2.length(); j++){
+				if(snew1.charAt(i) == snew2.charAt(j)){
+					isana = true;
+					placeHolder = j;
+				}
+			}
+			if (isana == false){
+				return false;
+			}
+			snew2 = snew2.substring(0, placeHolder) + snew2.substring(placeHolder + 1);
+		}
+		return true;
+		}
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
-		// Replace the following statement with your code
-		return "";
+		str = str.toLowerCase();	
+		String str1 = "";
+		for(int i = 0; i < str.length(); i++)	
+			if ((str.charAt(i) == 32) || str.charAt(i) >= 'a' && str.charAt(i) <= 'z') {
+			str1 = str1 + str.charAt(i)	;
+			}
+		return str1;
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
-		// Replace the following statement with your code
-		return "";
+		String newstr = "";
+		int strlength = str.length();
+		int random = 0;
+		for(int i=0; i < strlength; i++){
+			random = (int)(str.length() * Math.random());
+			newstr += str.charAt(random);
+			str = str.substring(0, random) + str.substring(random + 1);
+		}
+		return newstr;
 	}
 }
