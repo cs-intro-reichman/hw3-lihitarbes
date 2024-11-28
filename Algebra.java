@@ -62,7 +62,6 @@ public class Algebra {
 		}
 		else{
 			for( int i = 1; i>x2; i--){
-				System.out.println(newx);
 				newx = minus(newx, x1);
 		}
 		}
