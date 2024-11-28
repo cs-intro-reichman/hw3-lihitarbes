@@ -39,26 +39,27 @@ public class Anagram {
 		}
 		for (int i = 0; i < prestr2.length(); i++){
 			if((prestr2.charAt(i) >= 'a' && prestr2.charAt(i) <= 'z')){
-				snew2 = snew1 + prestr2.charAt(i);
+				snew2 = snew2 + prestr2.charAt(i);
 			}
 		}
 		if (snew1.length() != snew2.length()){
 			return false;
 		}
-		else {
-			int i = 0;
-		
-			while (snew2.length() > 0 && i < snew2.length()) {
-				if(snew2.indexOf(snew1.charAt(i)) == -1){
-				return false;	
+		int placeHolder = 0;
+		for (int i=0; i<snew1.length(); i++){
+			boolean isana = false;
+			for (int j=0; j < snew2.length(); j++){
+				if(snew1.charAt(i) == snew2.charAt(j)){
+					isana = true;
+					placeHolder = j;
 				}
-				else{
-					snew2 = str2.substring(0, i) + snew2.substring(i, 1);
-				}
-				i++;
-				}
-				return true;
-				}
+			}
+			if (isana == false){
+				return false;
+			}
+			snew2 = snew2.substring(0, placeHolder) + snew2.substring(placeHolder + 1);
+		}
+		return true;
 		}
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
@@ -67,7 +68,7 @@ public class Anagram {
 	public static String preProcess(String str) {
 		str = str.toLowerCase();	
 		String str1 = " ";
-		for(int i = 0; i <= str.length(); i++)	
+		for(int i = 0; i < str.length(); i++)	
 			if ((str.charAt(i) == ' ') || str.charAt(i) >= 'a' && str.charAt(i) <= 'z') {
 			str1 = str1 + str.charAt(i)	;
 			}
@@ -77,12 +78,13 @@ public class Anagram {
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
-		str = preProcess(str);
 		String newstr = "";
+		int strlength = str.length();
 		int random = 0;
-		while (str.length() > 0){
+		for(int i=0; i < strlength; i++){
 			random = (int)(str.length() * Math.random());
-			newstr = newstr + str.substring(0, random) + str.substring(random + 1);
+			newstr += str.charAt(random);
+			str = str.substring(0, random) + str.substring(random + 1);
 		}
 		return newstr;
 	}
