@@ -1,4 +1,4 @@
-§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§3§§33§§3§3/** Functions for checking if a given string is an anagram. */
+/** Functions for checking if a given string is an anagram. */
 public class Anagram {
 	public static void main(String args[]) {
 		// Tests the isAnagram function.
