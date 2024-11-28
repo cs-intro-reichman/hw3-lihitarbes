@@ -47,6 +47,7 @@ public class Anagram {
 		}
 		else {
 			int i = 0;
+		
 			while (snew2.length() > 0 && i < snew2.length()) {
 				if(snew2.indexOf(snew1.charAt(i)) == -1){
 				return false;	
@@ -55,10 +56,10 @@ public class Anagram {
 					snew2 = str2.substring(0, i) + snew2.substring(i, 1);
 				}
 				i++;
+				}
 				return true;
-			}
+				}
 		}
-	}
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
